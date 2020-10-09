@@ -1,0 +1,114 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%% setting up the document %%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{datetime}
+\usepackage{fancyhdr}  % setting up the header and footer of the pages
+\usepackage[left = 2cm, right=2cm, top = 2.5cm, bottom = 2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[backend=biber]{biblatex}
+\usepackage{float}
+\usepackage{hyperref}
+
+% WARNING, minted library for code highlighting works only if Python is installed
+% and if pygments Python module is installed
+\usepackage{minted} 
+
+
+%%%%%%%%%%%%%%%%%%%%%% images and bibliography %%%%%%%%%%
+
+\addbibresource{./bibliography/bib.bib}
+\graphicspath{{./img/}}
+
+
+%%%%%%%%%%%%%%%%%%%%%% setting up the page %%%%%%%%%%%%%%
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}              % paragraphs
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\myname}
+\lhead{\coursename}
+\cfoot{\thepage}   % footer has page name
+
+\frenchspacing      % smaller space between the . after a sentence
+
+
+%%%%%%%%%%%%%%%%%%% custom commands %%%%%%%%%%%%%%%%%%%%%%%%
+
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+
+
+
+\newcommand{\myname}
+{YOURNAME}			% you can change your name here
+
+\newcommand{\coursename}
+{YOUR COURSE NAME}		% change course name here
+
+\newcommand{\tit}    % title page
+{\begin{center}
+\Large{\textsc{\textbf {Slovak University Of Technology In \nolinebreak[4]Bratislava\\ % university name
+\vspace{0.1cm}
+Faculty Of Chemical And Food Technology\\              	% faculty
+Institute Of Information Engineering, Automation and Mathematics}}}\\   % institute
+\vspace{0.5cm}
+\large{\textsc{\textbf \coursename}}
+\end{center}}
+
+\newcommand{\titdown}     % bottom of title page
+{\begin{tabular}{p{13cm}lr}
+\large{\textbf{Bratislava, \monthyeardate\today}} & \large{\textbf \myname}   % date and student name
+\end{tabular}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% custom environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newenvironment{image}[3]
+%{
+%\begin{figure}[H]
+%\begin{center}
+%\includegraphics[width = #3\textwidth]{#1}
+%\end{center}
+%\caption{#2}\label{#1}
+%}
+%{
+%\end{figure}
+%}
+
+
+\newcommand{\image}[3]
+{
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width = #3\textwidth]{#1}
+\end{center}
+\caption{#2}\label{#1}
+\end{figure}
+}
+
+%\newenvironment{nam}[args]{begdef}{enddef}
+
+\newenvironment{code}[1]
+% usage:
+% \begin{code}{programmingLanguage}
+% ... actual code here ...
+% \end{code}
+{\VerbatimEnvironment
+\begin{minted}
+[frame=lines, 
+framesep=2mm,
+baselinestretch=1.2,
+%bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos]	
+{#1}}
+{
+\end{minted}
+}
+
+
+
+
