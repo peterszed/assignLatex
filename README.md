@@ -1,5 +1,5 @@
-# latexForAssignments
-latexForAssignments contains code for university assignments.
+# assignLatex
+assignLatex contains code for university assignments.
 
 ## Requires:
 For correct code highlighting this is necessary.
